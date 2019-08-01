@@ -1,4 +1,5 @@
 FROM alpine
-WORKDIR /tmp
-ADD release/drone-test /tmp/drone-test
-CMD ["./drone-test"]
+RUN mkdir /workdir
+WORKDIR /workdir
+ADD release/drone-test /workdir/drone-test
+CMD ["/workdir/drone-test"]
