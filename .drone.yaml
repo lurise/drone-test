@@ -5,9 +5,9 @@ steps:
 - name: build
   image: golang
   commands:
-  - pwd
-  - ls -la
-  - cd drone-test
+  #- pwd
+  #- ls -la
+  #- cd drone-test
   - GOOS=linux GOARCH=amd64 go build -o release/drone-test .
 
 - name: docker
