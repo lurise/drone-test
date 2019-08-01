@@ -8,8 +8,8 @@ steps:
     - name: govendor
       path: /go/src
   commands:
-  #- pwd
-  #- ls -la
+  - pwd
+  - ls -la
   #- cd drone-test
   - GOOS=linux GOARCH=amd64 go build --ldflags "-extldflags -static" -o release/drone-test .
 
