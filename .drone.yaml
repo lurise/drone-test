@@ -8,10 +8,13 @@ steps:
     - name: govendor
       path: /go/src
   commands:
+  - export GO111MODULE=off
   - pwd
   - ls -la
-  #- cd drone-test
-  - GOOS=linux GOARCH=amd64 go build --ldflags "-extldflags -static" -o release/drone-test .
+  - mkdir -p /go/src/github.com/lurise/drone-test
+  - cp /drone/src/* /go/src/github.com/lurise/drone-test
+  - cd /go/src/github.com/lurise/drone-test
+  - GOOS=linux GOARCH=amd64 go build --ldflags "-extldflags -static" -o /drone/src/release/drone-test .
 
 - name: docker
   image: plugins/docker
