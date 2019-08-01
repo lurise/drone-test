@@ -4,9 +4,9 @@ name: default
 steps:
 - name: build
   image: golang
-  volumes:
-    - name: govendor
-      path: /go/src
+#  volumes:
+#    - name: govendor
+#      path: /go/src
   commands:
   - pwd
   - ls -la
