@@ -16,6 +16,7 @@ steps:
     from_secret: dockerPwd
   repo: lurise/drone-test
 
+
 - name: ssh
   image: appleboy/drone-ssh
   settings:
