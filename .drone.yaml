@@ -27,7 +27,15 @@ steps:
     password:
       from_secret: sshPwd
     command_timeout: 2m
+    volume:
+      name: govendor
+      path: /go/src
     script:
     - docker rm drone-test -f
     - docker rmi lurise/drone-test
     - docker run -p 8080:8080 --name drone-test lurise/drone-test
+
+volumes:
+- name: govendor
+  host:
+    path: /drone/src/vendor
