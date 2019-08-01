@@ -5,8 +5,8 @@ steps:
 - name: build
   image: golang
   volumes:
-  - name: govendor
-    path: /go/src
+    - name: govendor
+      path: /go/src
   commands:
   #- pwd
   #- ls -la
@@ -34,8 +34,7 @@ steps:
     - docker rm drone-test -f
     - docker rmi lurise/drone-test
     - docker run -p 8080:8080 --name drone-test lurise/drone-test
-
 volumes:
-- name: govendor
-  host:
-    path: /drone/src/vendor
+  - name: govendor
+    host:
+      path: /drone/src/vendor
