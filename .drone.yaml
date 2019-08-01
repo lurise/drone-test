@@ -1,0 +1,31 @@
+kind: pipeline
+name: default
+
+steps:
+  - name: build
+    image: golang
+    commands:
+      - cd drone-test
+      - GOOS=linux GOARCH=amd64 go build -o release/drone-test .
+
+  - name: docker
+    image: plugins/docker
+    settings:
+      username: lurise
+      password:
+        from_secret: dockerPwd
+      repo: lurise/drone-test
+
+  - name: ssh
+    image: appleboy/drone-ssh
+    settings:
+      host:
+        - 49.235.35.141
+      username: root
+      password:
+        from_secret: sshPwd
+      command_timeout: 2m
+      script:
+        - docker rm drone-test -f
+        - docker rmi lurise/drone-test
+        - docker run -p 8080:8080 --name drone-test lurise/drone-test
