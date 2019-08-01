@@ -27,8 +27,8 @@ steps:
     password:
       from_secret: sshPwd
     command_timeout: 2m
-    volume:
-      name: govendor
+    volumes:
+    - name: govendor
       path: /go/src
     script:
     - docker rm drone-test -f
