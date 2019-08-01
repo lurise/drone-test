@@ -1,16 +1,17 @@
 package main
 
-import "net/http"
+import (
+	"github.com/gin-gonic/gin"
+	"net/http"
+)
 
 func main() {
-	server:=http.Server{
-		Addr:":8080",
-	}
-
-	http.HandleFunc("/",helloHandler)
-	server.ListenAndServe()
+	g := gin.Default()
+	g.GET("/", helloHandler)
 }
 
-func helloHandler(writer http.ResponseWriter, request *http.Request) {
-	writer.Write([]byte("hello world"))
+func helloHandler(context *gin.Context) {
+	context.JSON(http.StatusOK, gin.H{
+		"data": "hello world",
+	})
 }
