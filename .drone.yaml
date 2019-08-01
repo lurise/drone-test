@@ -4,6 +4,9 @@ name: default
 steps:
 - name: build
   image: golang
+  volumes:
+  - name: govendor
+    path: /go/src
   commands:
   #- pwd
   #- ls -la
@@ -27,9 +30,6 @@ steps:
     password:
       from_secret: sshPwd
     command_timeout: 2m
-    volumes:
-    - name: govendor
-      path: /go/src
     script:
     - docker rm drone-test -f
     - docker rmi lurise/drone-test
