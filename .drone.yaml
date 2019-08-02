@@ -8,7 +8,7 @@ steps:
     - name: govendor
       path: /go/src
   commands:
-    - GOOS=linux GOARCH=adm64 go build -o release/drone-test .
+    - GOOS=linux GOARCH=amd64 go build -o release/drone-test .
 #  - export GO111MODULE=off
 #  - pwd
 #  - ls -la
